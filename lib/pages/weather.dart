@@ -33,11 +33,7 @@ class _WeatherViewPageState extends State<WeatherViewPage> {
   }
 
   String weatherCondition(String? condition) {
-    if (condition == null) {
-      return 'assets/weather-sunny.json';
-    }
-
-    switch (condition.toLowerCase()) {
+    switch (condition?.toLowerCase()) {
       case 'clouds':
       case 'mist':
       case 'smoke':
