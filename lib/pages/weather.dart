@@ -2,6 +2,7 @@ import 'package:acquire/structure/weather_data.dart';
 import 'package:acquire/utility/weatherUtility.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 
 class WeatherViewPage extends StatefulWidget {
   const WeatherViewPage({super.key});
@@ -14,6 +15,7 @@ class _WeatherViewPageState extends State<WeatherViewPage> {
   final _weatherUtility = WeatherUtility('7547e74ddc899fb37e48de8c530bfb24');
 
   WeatherData? _weatherData;
+  late bool _loading;
 
   _getWeatherData() async {
     String city = await _weatherUtility.currentCity();
@@ -22,6 +24,7 @@ class _WeatherViewPageState extends State<WeatherViewPage> {
       final weather = await _weatherUtility.getWeatherData(city);
 
       setState(() {
+        _loading = false;
         _weatherData = weather;
       });
     } catch (error) {
@@ -59,6 +62,7 @@ class _WeatherViewPageState extends State<WeatherViewPage> {
   void initState() {
     super.initState();
 
+    _loading = true;
     _getWeatherData();
   }
 
@@ -68,21 +72,29 @@ class _WeatherViewPageState extends State<WeatherViewPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
+            _loading = true;
             _getWeatherData();
           });
         },
         child: const Icon(Icons.refresh),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(_weatherData?.condition ?? ""),
-            Lottie.asset(weatherCondition(_weatherData?.condition)),
-            Text(_weatherData?.city ?? 'getting city...'),
-            Text('${_weatherData?.temp.round()} Celcius'),
-          ],
-        ),
+        child: _loading
+            ? const Padding(
+                padding: const EdgeInsets.all(100.0),
+                child: const LoadingIndicator(
+                  indicatorType: Indicator.circleStrokeSpin,
+                ),
+              )
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(_weatherData?.condition ?? ""),
+                  Lottie.asset(weatherCondition(_weatherData?.condition)),
+                  Text(_weatherData?.city ?? 'getting city...'),
+                  Text('${_weatherData?.temp.round()} Celcius'),
+                ],
+              ),
       ),
     );
   }
