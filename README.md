@@ -6,6 +6,7 @@ This is a weather app demonstration using Flutter.
 1. Although it is possible to Dockerize this app, running an Android emulator (at least) from within a Docker container may pose some issues.
 2. The steps on installing a Docker emulator for an Android device can be found here https://github.com/google/android-emulator-container-scripts .  This repository states that it is still an experimental feature and the images provided or described in this repository will not run in a Windows or Mac parent environment.
 3. Installing Flutter directly into the parent environment is still the fastest and reliable way of running flutter apps which are under development.
+4. This app should also work in iOS emulators, but testing was not possible on my end for verification.
 
 ## Installation
 1. Make sure that flutter has been installed in the parent environment.  Please refer to this document on how to properly install flutter:  https://docs.flutter.dev/get-started/install
@@ -19,7 +20,10 @@ This is a weather app demonstration using Flutter.
 ## NOTES ON HOW TO USE AND DEPLOY
 1. The app sends API requests to https://openweathermap.org/ specifically to http://api.openweathermap.org/data/2.5/weather
 2. The API token is currently hard coded into the app since there is no other backend system where the token can be requested from.  But if this is to be in production, we strongly suggest to NOT store the API token from within the code base.  This is only for demonstration purposes on how to untilize Flutter.
-3. The app will auto detect your current location.  <strong>Please allow the app to use your current location when asked</strong>.
+3. The app will auto detect your current location.  <strong>Please allow the app to use your current location when asked</strong>.  Please refer to screenshots below for reference (Android):
+
+![access_location](https://github.com/user-attachments/assets/ac58f9dd-321f-49df-b9f1-daf6dc9b1164)
+
 4. Once allowed, the app will use the city name of your current location to query the API endpoint.
 5. To build and release an app into Playstore, please refer to this documentation:  https://docs.flutter.dev/deployment/android
 6. To build and release an app for the App Store, please refer to this documentation:  https://docs.flutter.dev/deployment/ios
