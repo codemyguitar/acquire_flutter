@@ -16,11 +16,13 @@ This is a weather app demonstration using Flutter.
 6. When the emulator is running do a ``` flutter pub get ```
 7. To run the application in the currently running Android or iOS emulator, do a ``` flutter run ```
 
-## NOTES
+## NOTES ON HOW TO USE AND DEPLOY
 1. The app sends API requests to https://openweathermap.org/ specifically to http://api.openweathermap.org/data/2.5/weather
 2. The API token is currently hard coded into the app since there is no other backend system where the token can be requested from.  But if this is to be in production, we strongly suggest to NOT store the API token from within the code base.  This is only for demonstration purposes on how to untilize Flutter.
-3. To build and release an app into Playstore, please refer to this documentation:  https://docs.flutter.dev/deployment/android
-4. To build and release an app for the App Store, please refer to this documentation:  https://docs.flutter.dev/deployment/ios
+3. The app will auto detect your current location.  <strong>Please allow the app to use your current location when asked</strong>.
+4. Once allowed, the app will use the city name of your current location to query the API endpoint.
+5. To build and release an app into Playstore, please refer to this documentation:  https://docs.flutter.dev/deployment/android
+6. To build and release an app for the App Store, please refer to this documentation:  https://docs.flutter.dev/deployment/ios
 
 ## Getting Started
 
